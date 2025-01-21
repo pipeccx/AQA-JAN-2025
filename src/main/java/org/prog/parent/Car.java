@@ -2,11 +2,34 @@ package org.prog.parent;
 
 //TODO: add destination parameter to method goTo
 
-import java.awt.*;
-
 public class Car {
 
     public String color;
+
+    public Car(String color) {
+        this.color = color;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Car) {
+            Car c = (Car) obj;
+            if (this.color != null) {
+                return this.color.equals(c.color);
+            } else {
+                return this.color == c.color;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        if (color != null) {
+            return color.hashCode();
+        }
+        return 0;
+    }
 
     public void goTo() {
         goTo("anywhere");
