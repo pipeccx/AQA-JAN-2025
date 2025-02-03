@@ -20,44 +20,35 @@ import java.util.*;
  */
 
 public class CollectionsHomework {
+    private Map<String, Set<String>> carOwners = new HashMap<>();
 
-    public static void main(String[] args) {
-        Map<Car, Set<String>> carOwners = new HashMap<>();
-
-        Car car1 = new Car("Car1");
-        Car car2 = new Car("Car2");
-        Car car3 = new Car("Car3");
-        Car car4 = new Car("Car4");
-        Car car5 = new Car("Car5");
-        Car car6 = new Car("Car6");
-        Car car7 = new Car("Car7");
-        Car car8 = new Car("Car8");
-
-        addOwner(car1, "John", carOwners);
-        addOwner(car2, "John", carOwners);
-        addOwner(car2, "Jane", carOwners);
-        addOwner(car3, "Jane", carOwners);
-        addOwner(car5, "Sarah", carOwners);
-        addOwner(car5, "Peter", carOwners);
-        addOwner(car6, "Peter", carOwners);
-        addOwner(car7, "Bob", carOwners);
-        addOwner(car8, "Ivy", carOwners);
-
-        printAllOwners(carOwners);
+    public void addOwner(String car, String owner) {
+        carOwners.putIfAbsent(car, new HashSet<>());
+        carOwners.get(car).add(owner);
     }
-        public static void addOwner (Car car, String owner, Map<Car, Set<String>> carOwners){
-            carOwners.putIfAbsent(car, new HashSet<>());
-            carOwners.get(car).add(owner);
-        }
-        public static void printAllOwners(Map<Car, Set <String>> carOwners){
-            Set<String> allOwners = new HashSet<>();
-            for (Set<String> owners : carOwners.values()) {
-                allOwners.addAll(owners);
+
+    public Set<String> getOwnersSharingCars() {
+        Set<String> sharedOwners = new HashSet<>();
+        for (Set<String> owners : carOwners.values()) {
+            if (owners.size() > 1) {
+                sharedOwners.addAll(owners);
             }
-            List<String> sortedOwners = new ArrayList<>(allOwners);
-            Collections.sort(sortedOwners);
-
-            System.out.println(String.join(", ", sortedOwners));
         }
+        return sharedOwners;
     }
-
+public static void main(String[] args) {
+        CollectionsHomework homework = new CollectionsHomework();
+        homework.addOwner("Car1","John");
+        homework.addOwner("Car2","John");
+        homework.addOwner("Car2","Jane");
+        homework.addOwner("Car3","Jane" );
+        homework.addOwner("Car4","");
+        homework.addOwner("Car5", "Sarah");
+        homework.addOwner("Car5","Peter");
+        homework.addOwner("Car6","Peter");
+        homework.addOwner("Car7","Bob");
+        homework.addOwner("Car8","Ivy");
+    Set<String> result = homework.getOwnersSharingCars();
+System.out.println("Sharing cars: " + result);
+}
+}
