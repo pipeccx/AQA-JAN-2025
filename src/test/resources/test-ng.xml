@@ -2,7 +2,7 @@
 <suite name="Suite1" verbose="1">
     <test name="Google Test">
         <classes>
-            <class name="org.prog.testng.W3SchoolsTest"/>
+            <class name="org.prog.sql.MyCucumberRunner"/>
         </classes>
     </test>
 </suite>

@@ -1,6 +1,8 @@
-#TODO: Homework * : Create table Phones : PhoneId, PhoneName, PhonePrice
-#TODO:- using selenium go to allo.ua, search for a phone
-#TODO:- get phone name
-#TODO:- get phone price
-#TODO:- store phone name and phone price to DB
-#TODO:- print that phone to console
+Feature: Search for a phone and save to database
+
+Scenario: Get iPhone name and price and save to DB
+    Given I open the browser and navigate to "https://allo.ua"
+    When I search for "Iphone"
+    Then I extract phone name and price
+    And I save phone name and price to the database
+    And I print the phone details to the console
