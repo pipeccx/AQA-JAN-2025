@@ -66,8 +66,8 @@ public class PhoneSqlCucumber {
 
     @And("I print the phone details to the console")
     public void printToConsole() {
-        System.out.println("Telefon: " + phoneName);
-        System.out.println("Cena: " + phonePrice);
+        System.out.println("Telefon : " + phoneName);
+        System.out.println("Cena : " + phonePrice);
         driver.quit();
     }
 }
