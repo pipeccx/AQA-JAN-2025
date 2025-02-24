@@ -6,4 +6,5 @@ import java.util.Map;
 public class Container {
 
     public static final Map<String, Object> DATA_HOLDER = new HashMap<>();
+
 }

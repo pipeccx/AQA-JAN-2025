@@ -19,6 +19,7 @@ public class SqlSteps {
 
     @Given("I write down the amount of people in DB as {string}")
     public void writeDownAMountOfRecordsInDB(String alias) throws SQLException {
+        System.out.println("Write people to DB");
         Container.DATA_HOLDER.put(alias, countDBRecords());
     }
 
@@ -47,7 +48,8 @@ public class SqlSteps {
     public void assertRecordsCount(int recordsCounts, String alias) throws SQLException {
         int initialCount = (int) Container.DATA_HOLDER.get(alias);
         int currentRecords = countDBRecords();
-        Assert.assertEquals(currentRecords, initialCount + recordsCounts);
+        Assert.assertEquals(currentRecords, initialCount + recordsCounts,
+                "User count in DB mismatch!");
     }
 
     private int countDBRecords() throws SQLException {
