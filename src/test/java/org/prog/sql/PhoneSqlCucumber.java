@@ -9,6 +9,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,9 +26,9 @@ public class PhoneSqlCucumber {
     private String phonePrice;
 
     @Given("I open the browser and navigate to {string}")
-    public void openBrowser(String url) {
+    public void openBrowser(String url) throws MalformedURLException {
         System.setProperty("webdriver.chrome.driver", "/opt/homebrew/bin/chromedriver");
-        driver = new ChromeDriver();
+        driver = getRemoteDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get(url);
     }
@@ -34,6 +39,7 @@ public class PhoneSqlCucumber {
         searchBox.sendKeys(searchTerm);
         searchBox.sendKeys(Keys.RETURN);
         Thread.sleep(5000);
+
     }
 
     @Then("I extract phone name and price")
@@ -69,6 +75,13 @@ public class PhoneSqlCucumber {
         System.out.println("Telefon : " + phoneName);
         System.out.println("Cena : " + phonePrice);
         driver.quit();
+
+    }
+
+    public WebDriver getRemoteDriver() throws MalformedURLException {
+        return new RemoteWebDriver(
+                new URL("https//selenoid-selenoid-1:4444/wd/hub"), new ChromeOptions());
     }
 }
+
 

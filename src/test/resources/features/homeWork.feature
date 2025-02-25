@@ -1,5 +1,6 @@
 Feature: Search for a phone and save to database
 
+
 Scenario: Get iPhone name and price and save to DB
     Given I open the browser and navigate to "https://allo.ua"
     When I search for "Iphone"
