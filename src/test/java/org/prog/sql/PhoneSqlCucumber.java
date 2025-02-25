@@ -53,7 +53,7 @@ public class PhoneSqlCucumber {
 
     @And("I save phone name and price to the database")
     public void saveToDatabase() {
-        String url = "jdbc:mysql://localhost:3306/db";
+        String url = "jdbc:mysql://mysql-db-1:3306/db";
         String user = "user";
         String password = "password";
 
